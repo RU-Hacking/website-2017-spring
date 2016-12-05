@@ -139,6 +139,9 @@ aside {
   .navbar-default.affix .nav > li > a:focus:hover {
     color: #ED1A3A;
   }
+  .navbar-collapse .nav > li#mlh {
+    display: inline;
+  }
 }
 header {
   position: relative;
