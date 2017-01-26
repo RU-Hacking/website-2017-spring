@@ -29,6 +29,18 @@ a:hover,
 a:focus {
   color: #eb3812;
 }
+div.row a {
+  text-decoration: underline;
+}
+div.row a:hover {
+  text-decoration: none;
+}
+section.bg-primary a {
+  color: #FFFFFF;
+}
+section.bg-primary a:hover {
+  color: #FFFFFF;
+}
 h1,
 h2,
 h3,
