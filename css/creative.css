@@ -356,3 +356,38 @@ body {
 .badge-size {
 	width: 120px;
 }
+
+#submit-field {
+	padding: 0;
+}
+
+
+#email {
+	font-size: 20px;
+	height: 2.75em;
+	margin-bottom: 20px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.25em;
+    border: none;
+    border: solid 1px rgba(255, 255, 255, 0.55);
+    color: inherit;
+    outline: 0;
+    padding: 1em;
+	text-decoration: none;
+}
+
+#success {
+	-moz-transform: translateY(0.5em);
+	-webkit-transform: translateY(0.5em);
+	-ms-transform: translateY(0.5em);
+	transform: translateY(0.5em);
+	opacity: 0;
+	-moz-transition: opacity 1s ease, -moz-transform 1s ease;
+	-webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
+	-ms-transition: opacity 1s ease, -ms-transform 1s ease;
+	transition: opacity 1s ease, transform 1s ease;
+}
