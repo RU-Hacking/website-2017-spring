@@ -18,7 +18,7 @@ $(document).ready(() => {
         }
 
 		/* JSONifies form */
-        var formData = $('#voting-form').serialize();
+        var formData = $('#signup-form').serialize();
 
 		/* Submits form, assumes success */
 		$.ajax({
