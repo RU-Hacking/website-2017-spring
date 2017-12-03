@@ -1,25 +1,3 @@
-submitted = false;
-
-$(document).ready(() => {
-		
-	$('#signup-form').submit((event) => {
-
-		/* Prevents defualt redirect */
-		event.preventDefault();
-		
-		/* Prevents accidental mulitple submissions */
-		
-		/* Prevents empty submissions */
-        if($('#email').val() === "") {
-            return;
-        }
-
-		
-
-	});
-	
-});
-
 // Signup Form.
 (function() {
 	
@@ -35,12 +13,12 @@ $(document).ready(() => {
 	// Message.
 		$message = document.createElement('span');
 			$message.classList.add('message');
+			$message.classList.add('success');
+			$message.innerHTML = "Thank you!";
 			$form.appendChild($message);
 
-		$message._show = function(type, text) {
+		$message._show = function() {
 
-			$message.innerHTML = text;
-			$message.classList.add(type);
 			$message.classList.add('visible');
 
 			window.setTimeout(function() {
@@ -55,9 +33,16 @@ $(document).ready(() => {
 
 	// Events.
 		$form.addEventListener('submit', function(event) {
-
-			event.stopPropagation();
+			
+			// Stops PHP submission.
 			event.preventDefault();
+			event.stopPropagation();
+
+			// Stop if invalid email.
+			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			if(!re.test($('#email').val())) {
+				return;
+			}
 
 			// Hide message.
 				$message._hide();
@@ -66,28 +51,22 @@ $(document).ready(() => {
 				$submit.disabled = true;
 
 			// Process form.
-				if(submitted) {
-					return;
-				}
-
-			// JSONifies form.
 				var formData = $('#signup-form').serialize();
-			
-					/* Submits form, assumes success */
-					$.ajax({
-						type: 'POST',
-						url: "https://docs.google.com/forms/d/e/1FAIpQLSeTyUtawOnXubiYEWM8-1ZxNZzazim839NfjmXjXpOlo1yEZw/formResponse",
-						crossDomain: true,
-						data: formData,
-						dataType: 'json',
-						id: "mG61Hd"
-					}).then(() => {
-						submitted = true;
-						$message._show('success', 'Thank you!');
-					}, (e) => {
-						//console.log(e);
-						//$message._show('failure', 'Something went wrong. Please try again.');
-					});
+
+			// Submits form.
+				$.ajax({
+					type: 'POST',
+					url: "https://docs.google.com/forms/d/e/1FAIpQLSeTyUtawOnXubiYEWM8-1ZxNZzazim839NfjmXjXpOlo1yEZw/formResponse",
+					crossDomain: true,
+					data: formData,
+					dataType: 'json',
+					id: "mG61Hd",
+					complete: () => {
+						$form.reset();
+						$submit.disabled = false;
+						$message._show();	
+					}
+				});
 
 		});
 
