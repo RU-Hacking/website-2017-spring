@@ -540,6 +540,16 @@
 			display: none;
 		}
 
+	.logo h1,
+	.branding-logo {
+		display: inline;
+	}
+
+	.branding-logo {
+		max-height: 2.5em;
+		padding-right: 1rem;
+	}
+
 /* List */
 
 	ol {
@@ -1024,6 +1034,11 @@
 	}
 
 	@media screen and (max-width: 736px) {
+
+		.branding-logo {
+			max-height: 1.5em;
+			padding-right: 0.5rem;
+		}
 
 		#header h1 {
 			font-size: 2em;
